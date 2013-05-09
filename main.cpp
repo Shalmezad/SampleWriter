@@ -4,6 +4,7 @@
 using namespace std;
 
 int displayMenu();
+void squareWave(char*, int);
 
 int main()
 {
@@ -17,9 +18,35 @@ int main()
     char* frames = new char[numFrames];
     //get the sample type.
     int sampleType = displayMenu();
+
+    //what sample are we creating?
+    switch(sampleType)
+    {
+        case 1:
+            squareWave(frames, numFrames);
+            break;
+    }
+
+    //write the frames to a file.
+    ofstream sample("newSample.sam");
+    for(int a=0; a<numFrames; a++){
+        sample<<frames[a];
+    }
+    sample.close();
+
     //don't forget to delete the frames.
     delete[] frames;
     return 0;
+}
+
+void squareWave(char* frames, int numFrames){
+    int halfWay = numFrames/2;
+    for(int a=0; a<halfWay; a++){
+        frames[a] = 0;
+    }
+    for(int a=halfWay; a<numFrames; a++){
+        frames[a] = 255;
+    }
 }
 
 int displayMenu()
