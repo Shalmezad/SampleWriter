@@ -5,6 +5,7 @@ using namespace std;
 
 int displayMenu();
 void squareWave(char*, int);
+void sawWave(char*, int);
 
 int main()
 {
@@ -24,6 +25,9 @@ int main()
     {
         case 1:
             squareWave(frames, numFrames);
+            break;
+        case 2:
+            sawWave(frames, numFrames);
             break;
     }
 
@@ -46,6 +50,12 @@ void squareWave(char* frames, int numFrames){
     }
     for(int a=halfWay; a<numFrames; a++){
         frames[a] = 255;
+    }
+}
+
+void sawWave(char* frames, int numFrames){
+    for(int a=0; a<numFrames;a++){
+        frames[a] = ((float)a/numFrames) * (128) + 128;
     }
 }
 
